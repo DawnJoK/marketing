@@ -1,0 +1,7 @@
+{
+  "name": "mediagroots-replica",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Faithful capture of the supplied MediaGroots Framer website",
+  "scripts": { "dev": "node scripts/serve.mjs", "start": "node scripts/serve.mjs", "check": "node scripts/check.mjs" }
+}
