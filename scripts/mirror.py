@@ -3,7 +3,7 @@ from pathlib import Path
 from urllib.request import Request, urlopen
 from urllib.parse import urljoin,urlsplit,unquote
 from concurrent.futures import ThreadPoolExecutor,as_completed
-import re,json,hashlib,time
+import re,json,hashlib,time,subprocess
 
 ROOT=Path(__file__).resolve().parents[1]
 DIST=ROOT/'dist'
@@ -85,3 +85,4 @@ for path,(text,base) in texts.items():Path(path).write_text(rewrite(text,base),e
 manifest={'source':ORIGIN,'pages':PAGES,'assets':records,'failed':failed}
 (ROOT/'capture-manifest.json').write_text(json.dumps(manifest,indent=2),encoding='utf-8')
 print('COMPLETE',len(records),'assets;',len(failed),'failures',flush=True)
+subprocess.run(['node',str(ROOT/'scripts/apply-customizations.mjs')],check=True)
